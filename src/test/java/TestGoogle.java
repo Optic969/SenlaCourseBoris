@@ -49,9 +49,9 @@ public class TestGoogle {
         WebDriverWait driverWait1 = new WebDriverWait(driver, 5);
         driver.get("https://stackoverflow.com/users/signup?ssrc=head&returnurl=%2fusers%2fstory%2fcurrent%27");
         driver.findElement(By.xpath("//div[@id='openid-buttons']//button[1]")).click();
-        driverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='identifierId']"))).sendKeys("optic969@gmail.com");
+        driverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='identifierId']"))).sendKeys("  ");
         driver.findElement(By.id("identifierNext")).click();
-        driverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='password']"))).sendKeys("totenkopf");
+        driverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='password']"))).sendKeys("  ");
         driver.findElement(By.id("passwordNext")).click();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         ((JavascriptExecutor)driver).executeScript("window.open()");
