@@ -1,4 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -12,11 +13,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
 public class TestGoogle {
+
     ChromeOptions options = new ChromeOptions();
 
     private WebDriver driver;
@@ -26,17 +27,18 @@ public class TestGoogle {
     public static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
+
     @Before
     public void setupTest() {
         options.setExperimentalOption("useAutomationExtension", false);
         options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
     }
-    /*@After
+    @After
     public void teardown() {
         if (driver != null) {
             driver.quit();
         }
-    }*/
+    }
     @Test
     public void test() {
         options.addArguments("start-maximized");
@@ -44,7 +46,7 @@ public class TestGoogle {
         options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
         WebDriver driver =  new ChromeDriver(options);
         WebDriverWait driverWait = new WebDriverWait(driver, 10);
-        WebDriverWait wait2 = new WebDriverWait(driver, 5);
+        WebDriverWait driverWait1 = new WebDriverWait(driver, 5);
         driver.get("https://stackoverflow.com/users/signup?ssrc=head&returnurl=%2fusers%2fstory%2fcurrent%27");
         driver.findElement(By.xpath("//div[@id='openid-buttons']//button[1]")).click();
         driverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='identifierId']"))).sendKeys("optic969@gmail.com");
@@ -63,7 +65,7 @@ public class TestGoogle {
         driver.findElements(By.xpath("//div[@class='TN bzz aHS-bnv']")).get(0).click();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         try {
-            wait2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\":ln\"]/div[1]/span")));
+            driverWait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\":ln\"]/div[1]/span")));
             driver.findElement(By.xpath("//*[@id=\":ln\"]/div[1]/span")).click();
             driver.findElement(By.xpath("//*[@id=\":4\"]/div[2]/div[1]/div[1]/div/div/div[2]/div/div")).click();
         }catch (Exception exception){
